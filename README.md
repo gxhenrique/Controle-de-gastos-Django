@@ -35,6 +35,7 @@ Projeto focado em **boas práticas com Django**, CRUD completo e organização d
 - **Django**
 - **HTML5**
 - **CSS3**
+- **JavaScript**
 - **Bootstrap**
 - **SQLite** (banco padrão do Django)
 
