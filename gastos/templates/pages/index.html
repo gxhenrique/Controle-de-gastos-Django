@@ -1,0 +1,112 @@
+{% load static %}
+{% load humanize %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Controle de Finanças</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static "gastos/css/style.css" %}">
+  </head>
+
+  <body class="container">
+
+    <header class="text-center p-3 bg-secondary-subtle">
+      <h1 class="border-bottom border-secondary border-1 mb-1">Bem-vindo</h1>
+      <p class="fw-bold">{{usuario}}</p>
+    </header>
+
+    <div class="d-flex justify-content-xl-center m-3">
+      <div class="card m-1" style="width: 18rem;">
+        <div class="card-body ">
+          <h5 class="card-title p-3 bg-primary text-white text-center">Entrada</h5>
+      
+          <p class="card-text text-center fs-5 p-1 fw-bold">R$ {{total_entrada|floatformat:2|intcomma}}</p>
+      
+        </div>
+      </div>
+      <div class="card m-1" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title p-3 bg-primary text-white text-center">Saida</h5>
+      
+          <p class="card-text text-center fs-5 p-1 fw-bold">R$ {{total_saida|floatformat:2|intcomma}}</p>
+      
+        </div>
+      </div>
+      
+      <div class="card m-1" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title p-3 bg-primary text-white text-center">Saldo</h5>
+      
+          <p class="card-text text-center fs-5 p-1 fw-bold">R$ {{saldo|floatformat:2|intcomma}}</p>
+      
+        </div>
+      </div>
+    </div>
+
+    <form class="finance-form" action="" method='post'>
+
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button class="btn btn-success" type="submit">ENVIAR</button>
+    </form>
+
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Data</th>
+        <th scope="col">ALTERAR</th>
+        <th scope="col">DELETE</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for transacao  in transacaos  %}
+            <tr>
+              <form action="{% url "alterar_financa"  transacao.id  %}" method="post">
+
+                {% csrf_token %}
+                <td>
+
+                  <input type="text" disabled class="form-control input_titulo" name="titulo" value="{{transacao.titulo}}"></input>
+
+                </td>
+                <td>
+
+                  <input type="text" disabled class="form-control input_valor" name="valor" value="{{transacao.valor}}"></input>
+                  
+                </td>
+                <td>
+                   <select name="tipo" disabled class="form-select select_tipo">
+                      <option value="entrada" {% if transacao.tipo == 'entrada' %}selected{% endif %}>entrada</option>
+                      <option value="saida" {% if transacao.tipo == 'saida' %}selected{% endif %}>saída</option>
+                    </select>
+                </td>
+                <td>{{ transacao.data|date:"d/m/Y" }}</td>
+              
+                <td>
+                    <button class="btn btn-primary botao_alterar " type="button"> ALTERAR</button>
+                    <button  type="submit" class="btn btn-success botao_salvar "> SALVAR</button>
+                </td>
+              </form>
+
+              
+              <td>
+                  <a class="btn btn-danger " href="{% url "delete_financa" transacao.id %}">DELETE</a>
+              </td>
+            </tr>
+
+        {% endfor %}
+        
+    </tbody>
+    </table>
+    <script src="{% static "gastos/scripts/scripts.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

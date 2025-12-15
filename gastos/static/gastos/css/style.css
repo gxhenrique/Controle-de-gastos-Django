@@ -1,0 +1,57 @@
+/* Container do formulário */
+.finance-form {
+    width: 100%;
+    background-color: transparent;
+    padding: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Título e labels do form */
+.finance-form p label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #2b2b2b;
+}
+
+/* Inputs do Django form */
+.finance-form p input,
+.finance-form p select,
+.finance-form p textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d2d2d2;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito no foco para combinar com Bootstrap */
+.finance-form p input:focus,
+.finance-form p select:focus,
+.finance-form p textarea:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+/* Distância entre os campos */
+.finance-form p {
+    margin-bottom: 18px;
+}
+
+/* Botão ENVIAR */
+.finance-form button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 1.07rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/*botao_salvar*/
+
+.botao_salvar{
+    display: none;
+}
