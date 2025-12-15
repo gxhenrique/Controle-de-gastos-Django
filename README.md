@@ -8,7 +8,7 @@ Projeto focado em **boas práticas com Django**, CRUD completo e organização d
 
 ## 📸 Preview do Projeto
 
-![Preview do sistema](./preview.png)
+![Preview do sistema]([./preview.png](https://github.com/gxhenrique/Controle-de-gastos-Django/blob/main/Captura%20de%20tela%202025-12-15%20174534.png))
 
 > Tela principal com resumo financeiro, formulário de cadastro e lista de movimentações.
 
